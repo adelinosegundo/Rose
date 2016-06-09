@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @denuncium.data %>
+</p>
+
+<p>
+  <strong>Hora:</strong>
+  <%= @denuncium.hora %>
+</p>
+
+<p>
+  <strong>Endereco:</strong>
+  <%= @denuncium.endereco %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @denuncium.descricao %>
+</p>
+
+<p>
+  <strong>X:</strong>
+  <%= @denuncium.x %>
+</p>
+
+<p>
+  <strong>Y:</strong>
+  <%= @denuncium.y %>
+</p>
+
+<%= link_to 'Edit', edit_denuncium_path(@denuncium) %> |
+<%= link_to 'Back', denuncia_path %>

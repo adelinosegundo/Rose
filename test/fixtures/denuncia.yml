@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: MyString
+  hora: MyString
+  endereco: MyString
+  descricao: MyString
+  x: 
+  'y': 
+
+two:
+  data: MyString
+  hora: MyString
+  endereco: MyString
+  descricao: MyString
+  x: 
+  'y': 
