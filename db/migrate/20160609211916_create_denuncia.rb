@@ -5,8 +5,8 @@ class CreateDenuncia < ActiveRecord::Migration
       t.string :hora
       t.string :endereco
       t.string :descricao
-      t.int :x
-      t.int :y
+      t.integer :x
+      t.integer :y
 
       t.timestamps null: false
     end

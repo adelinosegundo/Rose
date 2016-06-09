@@ -246,18 +246,18 @@
             O ROSE é um aplicativo que tem por intuito facilitar uma denúncia em casos de abusos, assédio e agressões, sejam essas
                 físicas ou verbais. Feito especialmente não só para mulheres sis, mas para mulheres trans também, hétero ou homossexuais.
                 Afinal, sabemos que hoje em dia gênero e sexualidade são os principais motivos de agressão contra a mulher. O Brasil é tido
-                como o país em primeiro lugar no que diz respeito a transfobia. 
+                como o país em primeiro lugar no que diz respeito a transfobia.
                 <br><br>
           </p>
           <p>
             Acesse nossas Redes Sociais e nos acompanhe!
-         
+
             <a class="social" href="https://www.facebook.com/RoseComoUmaRosa/" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
             <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
           </p>
-        </div>        
-          
-          
+        </div>
+
+
 
         <img class="col-md-4 col-md-4 col-sm-12 col-xs-12" src="assets/img/about/cell.png" alt="">
 
@@ -278,9 +278,7 @@
 
         <h4 class="subtitle">Falsa comunicação a Polícia é crime previsto no Artigo 340 do Código Penal Brasileiro, ficando sujeito o autor a detenção de 1 a 6 meses ou multa.</h4>
 
-      <div class="col-md-3 wow fadeInRight"></div>
-
-        <form role="form" class="contact-form" method="post">
+        <%= form_for(Denuncium.new) do |f| %>
           <div class="col-md-6 wow fadeInLeft" data-wow-delay=".5s">
             <div class="form-group">
               <div class="controls">
@@ -288,33 +286,35 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="controls">
-                <input type="date" class="form-control" placeholder="Data do fato">
-              </div>
+              <div class="controls"></div>
+              <%= f.text_field :data, class: "form-control", placeholder: "Data do fato" %>
             </div>
             <div class="form-group">
-              <div class="controls">
-                <input type="time" class="form-control" placeholder="Hora do fato">
-              </div>
+              <div class="controls"></div>
+              <%= f.text_field :hora, class: "form-control", placeholder: "Hora do fato" %>
             </div>
             <div class="form-group">
-              <div class="controls">
-                <input type="text" class="form-control requiredField" placeholder="Endereço do fato ocorrido">
-              </div>
+              <div class="controls"></div>
+              <%= f.text_field :endereco, class: "form-control requiredField", placeholder: "Endereço do fato ocorrido" %>
             </div>
-
             <div class="form-group">
-
-              <div class="controls">
-                <textarea rows="7" class="form-control" placeholder="Descrição do fato ocorrido"></textarea>
-              </div>
+              <div class="controls"></div>
+              <%= f.text_area :descricao, class: "form-control", placeholder: "Descrição do fato ocorrido" %>
             </div>
-            <button type="submit" id="submit" class="btn btn-lg btn-common">Denunciar</button><div id="success" style="color:#34495e;"></div>
-
+            <div class="form-group">
+              <div class="controls"></div>
+              <%= f.hidden_field :x %>
+            </div>
+            <div class="form-group">
+              <div class="controls"></div>
+              <%= f.hidden_field :y %>
+            </div>
+            <%= f.submit "Denunciar", class: "btn btn-lg btn-common" %>
           </div>
-        </form>
-
-        <div class="col-md-3 wow fadeInRight"> </div>
+          <div class="col-md-6 wow fadeInLeft" data-wow-delay=".5s">
+              <div id="map" style=' height: 400px'></div>
+          </div>
+        <% end %>
 
     </div>
   </section>
@@ -329,8 +329,11 @@
       </div>
     </div>
   </div>
+  <%= javascript_include_tag 'application' %>
   <!-- Copyright Section End-->
-
+  <script src="//maps.google.com/maps/api/js?v=3.23&key=AIzaSyDXtgkCTEDGBTbFR5Cc4dcQjxVACU6XA80"></script>
+  <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+  <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
   <!-- Bootstrap JS -->
   <script src="assets/js/bootstrap.min.js"></script>
 
@@ -341,6 +344,21 @@
 
   <!-- All JS plugin Triggers -->
   <script src="assets/js/main.js"></script>
+
+  <script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers([
+        {
+          "lat": -5.832327,
+          "lng": -35.2027254,
+          "draggable": "true",
+        }
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  </script>
 
 
 
